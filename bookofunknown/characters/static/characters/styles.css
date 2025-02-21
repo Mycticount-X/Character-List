@@ -25,11 +25,12 @@ li {
 }
 
 li a {
+    color: brown;
     text-decoration: none;
-    color: #007BFF;
 }
 
 li a:hover {
+    color: yellowgreen;
     text-decoration: underline;
 }
 
