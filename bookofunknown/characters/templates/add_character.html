@@ -11,13 +11,13 @@
     <form method="post">
         {% csrf_token %}
         <input type="text" name="name" placeholder="Name" required>
-        <input type="number" name="level" placeholder="Level" required>
+        <input type="number" name="level" placeholder="Level" required><br>
         <input type="number" name="hp" placeholder="HP" required>
-        <input type="number" name="atk" placeholder="ATK" required>
+        <input type="number" name="atk" placeholder="ATK" required> <br>
         <input type="number" name="defense" placeholder="DEF" required>
-        <input type="number" name="spd" placeholder="SPD" required>
+        <input type="number" name="spd" placeholder="SPD" required> <br>
         <input type="number" name="stm" placeholder="STM" required>
-        <input type="number" name="mtx" placeholder="MTX" required>
+        <input type="number" name="mtx" placeholder="MTX" required> <br>
         <button type="submit">Add Character</button>
     </form>
     <a href="{% url 'character_list' %}">Back to Character List</a>
