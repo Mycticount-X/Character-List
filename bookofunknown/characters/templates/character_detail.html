@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ character.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'characters/styles.css' %}">
+</head>
+<body>
+    <h1>{{ character.name }} [Level: {{ character.level }}]</h1>
+    <p>HP: {{ character.hp }}</p>
+    <p>ATK: {{ character.atk }}</p>
+    <p>DEF: {{ character.defense }}</p>
+    <p>SPD: {{ character.spd }}</p>
+    <p>STM: {{ character.stm }}</p>
+    <p>MTX: {{ character.mtx }}</p>
+
+    <a href="{% url 'character_list' %}">Back to Character List</a>
+</body>
+</html>

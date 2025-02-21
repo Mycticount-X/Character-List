@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book of Unknown - Characters</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'characters/styles.css' %}">
+</head>
+<body>
+    <h1>Character List</h1>
+    <ul>
+        {% for character in characters %}
+            <li><a href="{% url 'character_detail' character.id %}">{{ character.name }} [Level: {{ character.level }}]</a></li>
+        {% empty %}
+            <li>No characters available</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_character' %}">Add Character</a> | 
+    <a href="{% url 'character_list' %}">Home</a>
+</body>
+</html>

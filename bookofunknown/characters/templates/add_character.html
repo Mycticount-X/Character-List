@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Character</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'characters/styles.css' %}">
+</head>
+<body>
+    <h1>Add a New Character</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="number" name="level" placeholder="Level" required>
+        <input type="number" name="hp" placeholder="HP" required>
+        <input type="number" name="atk" placeholder="ATK" required>
+        <input type="number" name="defense" placeholder="DEF" required>
+        <input type="number" name="spd" placeholder="SPD" required>
+        <input type="number" name="stm" placeholder="STM" required>
+        <input type="number" name="mtx" placeholder="MTX" required>
+        <button type="submit">Add Character</button>
+    </form>
+    <a href="{% url 'character_list' %}">Back to Character List</a>
+</body>
+</html>
