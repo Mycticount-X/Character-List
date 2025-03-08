@@ -86,7 +86,7 @@ def generate_random_minor_stats(level):
         mtx = random.randrange(10, 41, 10)
     elif 11 <= level <= 20:
         # Bagian 2
-        hp = random.randint(100, 400)
+        hp = random.randint(200, 400)
         atk = random.randint(15, 40)
         defense = random.randint(15, 40)
         spd = random.randint(20, 80)
@@ -94,7 +94,7 @@ def generate_random_minor_stats(level):
         mtx = random.randrange(20, 61, 10)
     elif 21 <= level <= 30:
         # Bagian 3
-        hp = random.randint(200, 800)
+        hp = random.randint(300, 800)
         atk = random.randint(30, 60)
         defense = random.randint(30, 60)
         spd = random.randint(60, 100)
@@ -103,7 +103,7 @@ def generate_random_minor_stats(level):
     elif 31 <= level <= 40:
         # Bagian 4
         hp = random.randint(500, 1200)
-        atk = random.randint(40, 80)
+        atk = random.randint(50, 80)
         defense = random.randint(40, 80)
         spd = random.randint(60, 100)
         stm = random.randrange(60, 101, 10)
@@ -166,39 +166,59 @@ def generate_random_minor_stats(level):
         "MTX": mtx
     }
 
+def generate_stats(character_type, level):
+    """Menghasilkan statistik karakter berdasarkan tipe dan level."""
+    if character_type in ["min", "minlist", "e", "elist"]:
+        stats = generate_random_minor_stats(level)
+        if character_type in ["e", "elist"]:
+            stats["HP"] += level * 20
+            stats["ATK"] += level * 2
+            stats["DEF"] += level * 2
+            stats["SPD"] += level * 1
+    else:
+        stats = generate_random_stats(level)
+    
+    return stats
+
 def main():
+    print("== Random Stats Generator ==")
+
     while True:
-        print("== Random Stats Generator ==")
-        # Menanyakan jenis karakter terlebih dahulu
-        character_type = input("Masukkan tipe karakter (Minor/Standart): ").strip().lower()
+        character_type = input("Masukkan tipe karakter ['exit' untuk keluar]: ").strip().lower()
         
-        if character_type in ["minor", "standart", "std", "e"]:
+        if character_type == "exit":
+            break
+        
+        if character_type not in ["min", "std", "e", "minlist", "stdlist", "elist"]:
+            print("Pilihan tidak valid, coba lagi.")
+            continue
+        
+        while True:
             try:
                 level = int(input("Masukkan level karakter (1-100): "))
-                if 1 <= level <= 100:
-                    if character_type == "minor":
-                        stats = generate_random_minor_stats(level)
-                    elif character_type == "e":
-                        stats = generate_random_minor_stats(level)
-                        stats["HP"] += level * 10
-                    else:
-                        stats = generate_random_stats(level)
-                    
-                    print(f"\nStats untuk {character_type.capitalize()} level {level}:")
-                    for key, value in stats.items():
-                        print(f"{key}: {value}")
-                    
-                    lagi = input("\nApakah ingin menginput level lagi? (y/n): ").lower()
+                if not (1 <= level <= 100):
+                    print("Level harus antara 1 dan 100.")
+                    continue
+                
+                stats = generate_stats(character_type, level)
+
+                print(f"\nCharacter [Level {level}]")
+                for key, value in stats.items():
+                    print(f"{key}: {value}")
+
+                # Untuk tipe tunggal (min, std, e), tanya ulang input
+                if character_type in ["min", "std", "e"]:
+                    lagi = input("\nApakah ingin menginput level lagi? (y/n): ").strip().lower()
                     if lagi != 'y':
                         break
                 else:
-                    print("Level harus antara 1 dan 100.")
+                    print()
             except ValueError:
                 print("Harap masukkan angka yang valid.")
-        else:
-            print("Harap masukkan pilihan yang valid: 'Minor' atau 'Standart'")
-        
-        print()
+
+if __name__ == "__main__":
+    main()
+
         
 if __name__ == "__main__":
     main()
