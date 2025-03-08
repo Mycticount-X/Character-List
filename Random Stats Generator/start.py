@@ -167,7 +167,6 @@ def generate_random_minor_stats(level):
     }
 
 def generate_stats(character_type, level):
-    """Menghasilkan statistik karakter berdasarkan tipe dan level."""
     if character_type in ["min", "minlist", "e", "elist"]:
         stats = generate_random_minor_stats(level)
         if character_type in ["e", "elist"]:
@@ -195,7 +194,10 @@ def main():
         
         while True:
             try:
-                level = int(input("Masukkan level karakter (1-100): "))
+                level = input("Masukkan level karakter (1-100): ")
+                if level == "exit": break
+                level = int(level)
+
                 if not (1 <= level <= 100):
                     print("Level harus antara 1 dan 100.")
                     continue
