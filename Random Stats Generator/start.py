@@ -3,7 +3,7 @@ import random
 def generate_random_stats(level):
     if 1 <= level <= 15:
         # Bagian 1
-        hp = random.randint(500, 3000)
+        hp = random.randint(5000, 30000)
         atk = random.randint(100, 2000)
         defense = random.randint(100, 2000)
         spd = random.randint(80, 120)
@@ -11,7 +11,7 @@ def generate_random_stats(level):
         mtx = random.randrange(50, 201, 10)
     elif 16 <= level <= 30:
         # Bagian 2
-        hp = random.randint(2000, 5000)
+        hp = random.randint(20000, 50000)
         atk = random.randint(800, 4000)
         defense = random.randint(800, 4000)
         spd = random.randint(80, 120)
@@ -19,7 +19,7 @@ def generate_random_stats(level):
         mtx = random.randrange(50, 201, 10)
     elif 31 <= level <= 45:
         # Bagian 3
-        hp = random.randint(4000, 10000)
+        hp = random.randint(40000, 100000)
         atk = random.randint(2000, 6000)
         defense = random.randint(2000, 6000)
         spd = random.randint(100, 180)
@@ -27,7 +27,7 @@ def generate_random_stats(level):
         mtx = random.randrange(100, 501, 10)
     elif 46 <= level <= 60:
         # Bagian 4
-        hp = random.randint(8000, 30000)
+        hp = random.randint(80000, 300000)
         atk = random.randint(5000, 15000)
         defense = random.randint(5000, 15000)
         spd = random.randint(120, 300)
@@ -35,7 +35,7 @@ def generate_random_stats(level):
         mtx = random.randrange(300, 801, 10)
     elif 61 <= level <= 70:
         # Bagian 5
-        hp = random.randint(15000, 50000)
+        hp = random.randint(150000, 500000)
         atk = random.randint(8000, 30000)
         defense = random.randint(8000, 30000)
         spd = random.randint(200, 400)
@@ -43,7 +43,7 @@ def generate_random_stats(level):
         mtx = random.randrange(600, 1501, 10)
     elif 71 <= level <= 80:
         # Bagian 6 (Custom)
-        hp = random.randint(30000, 70000)
+        hp = random.randint(300000, 700000)
         atk = random.randint(15000, 35000)
         defense = random.randint(15000, 35000)
         spd = random.randint(250, 450)
@@ -51,7 +51,7 @@ def generate_random_stats(level):
         mtx = random.randrange(800, 2001, 10)
     elif 81 <= level <= 90:
         # Bagian 7 (Custom)
-        hp = random.randint(50000, 100000)
+        hp = random.randint(500000, 1000000)
         atk = random.randint(20000, 50000)
         defense = random.randint(20000, 50000)
         spd = random.randint(300, 500)
@@ -59,7 +59,7 @@ def generate_random_stats(level):
         mtx = random.randrange(1000, 2501, 10)
     elif 91 <= level <= 100:
         # Bagian 8 (Custom)
-        hp = random.randint(70000, 150000)
+        hp = random.randint(800000, 8000000)
         atk = random.randint(30000, 60000)
         defense = random.randint(30000, 60000)
         spd = random.randint(350, 600)
@@ -188,7 +188,8 @@ def main():
         if character_type == "exit":
             break
         
-        if character_type not in ["min", "std", "e", "minlist", "stdlist", "elist"]:
+        # Pilihan Tipe Karakter
+        if character_type not in ["min", "std", "e"]:
             print("Pilihan tidak valid, coba lagi.")
             continue
         
@@ -208,13 +209,11 @@ def main():
                 for key, value in stats.items():
                     print(f"{key}: {value}")
 
-                # Untuk tipe tunggal (min, std, e), tanya ulang input
-                if character_type in ["min", "std", "e"]:
-                    lagi = input("\nApakah ingin menginput level lagi? (y/n): ").strip().lower()
-                    if lagi != 'y':
-                        break
-                else:
-                    print()
+               
+                lagi = input("\nApakah ingin menginput level lagi? (y/n): ").strip().lower()
+                if lagi != 'y':
+                    break
+                
             except ValueError:
                 print("Harap masukkan angka yang valid.")
 
